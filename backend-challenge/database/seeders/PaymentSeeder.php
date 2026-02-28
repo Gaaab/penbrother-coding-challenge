@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Amortization;
-use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -27,7 +26,7 @@ class PaymentSeeder extends Seeder
             $baseAmount = intval($totalAmount / $paymentsCount);
             $remainder = $totalAmount - ($baseAmount * $paymentsCount);
 
-            for ($i=0; $i < $paymentsCount; $i++) {
+            for ($i = 0; $i < $paymentsCount; $i++) {
                 $amount = $baseAmount + ($i < $remainder ? 1 : 0); // Distribute the remainder among the first few payments
 
                 $payments[] = [
@@ -45,7 +44,7 @@ class PaymentSeeder extends Seeder
                 }
             }
 
-            if (!empty($payments)) {
+            if (! empty($payments)) {
                 DB::table('payments')->insert($payments);
             }
         }

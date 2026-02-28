@@ -15,7 +15,7 @@ class PaymentsController extends Controller
             ->with('user:id,name');
 
         if ($request->has('state')) {
-            $query->whereDate('state', $request->input('state'));
+            $query->where('state', $request->input('state'));
         }
 
         if ($request->has('user')) {
