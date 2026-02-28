@@ -12,11 +12,11 @@ class Amortization extends Model
     protected $fillable = [
         'amount',
         'state',
-        'scheduled_date',
+        'schedule_date',
     ];
 
     protected $casts = [
-        'scheduled_date' => 'datetime',
+        'schedule_date' => 'datetime',
         'amount' => 'integer', //
     ];
 
