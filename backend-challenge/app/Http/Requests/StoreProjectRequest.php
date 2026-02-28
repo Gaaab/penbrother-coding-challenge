@@ -26,13 +26,13 @@ class StoreProjectRequest extends FormRequest
                 'required',
                 'string',
                 'max:30',
-                'regex:/^[a-zA-Z0-9\s]+$/' // allows letters, numbers, and spaces
+                'regex:/^[a-zA-Z0-9\s]+$/', // allows letters, numbers, and spaces
             ],
             'description' => [
                 'required',
                 'string',
                 'max:4000',
-                'regex:/^[a-zA-Z0-9\s.;:!?\-]+$/' // allows letters, numbers, spaces, and common punctuation
+                'regex:/^[a-zA-Z0-9\s.;:!?\-]+$/', // allows letters, numbers, spaces, and common punctuation
             ],
         ];
     }

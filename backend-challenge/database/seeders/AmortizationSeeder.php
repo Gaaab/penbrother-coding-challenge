@@ -15,14 +15,13 @@ class AmortizationSeeder extends Seeder
      */
     public function run(): void
     {
-
         $faker = Faker\Factory::create();
         $projects = Project::all();
         foreach ($projects as $project) {
             $state = $faker->randomElement(['pending', 'paid']);
             $start_date_paid = Carbon::now()->subMonths(40);
             $start_date_unpaid = Carbon::now()->subMonths(20);
-            $amount = $project->investment_goal / 40;
+            $amount = intval($project->investment_goal / 40); // ensure integer storage (cents)
 
             for ($i = 0; $i <= 40; $i++) {
                 $amortization = new Amortization();

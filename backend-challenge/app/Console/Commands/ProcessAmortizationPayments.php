@@ -38,6 +38,7 @@ class ProcessAmortizationPayments extends Command
             $date = Carbon::createFromFormat('Y-m-d', $dateInput);
         } catch (Exception $e) {
             $this->error('Invalid date format. Please use Y-m-d.');
+
             return Command::FAILURE;
         }
 
@@ -75,6 +76,7 @@ class ProcessAmortizationPayments extends Command
             });
 
         $this->info("Processing complete. Total processed: $processed. Total delayed: $delayed.");
+
         return Command::SUCCESS;
     }
 

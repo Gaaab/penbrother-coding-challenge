@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +21,10 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => User::factory(),
+            'amortization_id' => AmortizationFactory::factory(),
+            'amount' => $this->faker->numberBetween(100, 50000),
+            'state' => $this->faker->randomElement(['pending', 'paid']),
         ];
     }
 }

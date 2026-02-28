@@ -6,6 +6,7 @@ use App\Models\Amortization;
 use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PaymentSeeder extends Seeder
 {
@@ -15,18 +16,37 @@ class PaymentSeeder extends Seeder
     public function run(): void
     {
         $amortizations = Amortization::all();
-        $users = User::whereIn('id', [1, 2, 3, 4, 5])->get();
+        $userIds = User::limit(20)->pluck('id')->toArray();
+        $userCount = count($userIds);
 
         foreach ($amortizations as $amortization) {
-            foreach ($users as $user) {
-                for ($i = 0; $i <= 40; $i++) {
-                    $payment = new Payment();
-                    $payment->user_id = $user->id;
-                    $payment->amortization_id = $amortization->id;
-                    $payment->amount = $amortization->amount / 40;
-                    $payment->state = $amortization->state;
-                    $payment->save();
+            $payments = [];
+            $totalAmount = $amortization->amount;
+            $paymentsCount = 1000;
+
+            $baseAmount = intval($totalAmount / $paymentsCount);
+            $remainder = $totalAmount - ($baseAmount * $paymentsCount);
+
+            for ($i=0; $i < $paymentsCount; $i++) {
+                $amount = $baseAmount + ($i < $remainder ? 1 : 0); // Distribute the remainder among the first few payments
+
+                $payments[] = [
+                    'user_id' => $userIds[$i % $userCount],
+                    'amortization_id' => $amortization->id,
+                    'amount' => $amount,
+                    'state' => $amortization->state,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+
+                if (count($payments) >= 500) {
+                    DB::table('payments')->insert($payments);
+                    $payments = [];
                 }
+            }
+
+            if (!empty($payments)) {
+                DB::table('payments')->insert($payments);
             }
         }
     }

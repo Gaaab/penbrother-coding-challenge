@@ -11,8 +11,7 @@ class AmortizationsController extends Controller
 {
     public function __construct(
         protected AmortizationService $amortizationService
-    )
-    {
+    ) {
     }
 
     public function index(Request $request): AnonymousResourceCollection
