@@ -21,7 +21,7 @@ class AmortizationSeeder extends Seeder
             $state = $faker->randomElement(['pending', 'paid']);
             $start_date_paid = Carbon::now()->subMonths(40);
             $start_date_unpaid = Carbon::now()->subMonths(20);
-            $amount = intval($project->investment_goal / 40); // ensure integer storage (cents)
+            $amount = round($project->investment_goal / 40, 5);
 
             for ($i = 0; $i <= 40; $i++) {
                 $amortization = new Amortization();

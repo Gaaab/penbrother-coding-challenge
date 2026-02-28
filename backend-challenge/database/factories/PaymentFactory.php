@@ -23,7 +23,7 @@ class PaymentFactory extends Factory
         return [
             'user_id' => User::factory(),
             'amortization_id' => AmortizationFactory::factory(),
-            'amount' => $this->faker->numberBetween(100, 50000),
+            'amount' => $this->faker->randomFloat(5, 1, 500),
             'state' => $this->faker->randomElement(['pending', 'paid']),
         ];
     }

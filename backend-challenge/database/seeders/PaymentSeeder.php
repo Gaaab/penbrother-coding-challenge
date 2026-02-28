@@ -23,11 +23,12 @@ class PaymentSeeder extends Seeder
             $totalAmount = $amortization->amount;
             $paymentsCount = 1000;
 
-            $baseAmount = intval($totalAmount / $paymentsCount);
-            $remainder = $totalAmount - ($baseAmount * $paymentsCount);
+            $baseAmount = round($totalAmount / $paymentsCount, 5);
+            $distributed = round($baseAmount * ($paymentsCount - 1), 5);
+            $lastAmount = round($totalAmount - $distributed, 5);
 
             for ($i = 0; $i < $paymentsCount; $i++) {
-                $amount = $baseAmount + ($i < $remainder ? 1 : 0); // Distribute the remainder among the first few payments
+                $amount = ($i === $paymentsCount - 1) ? $lastAmount : $baseAmount;
 
                 $payments[] = [
                     'user_id' => $userIds[$i % $userCount],

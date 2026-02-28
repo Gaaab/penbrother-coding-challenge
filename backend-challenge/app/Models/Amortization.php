@@ -17,7 +17,7 @@ class Amortization extends Model
 
     protected $casts = [
         'schedule_date' => 'datetime',
-        'amount' => 'integer', //
+        'amount' => 'decimal:5',
     ];
 
     public function project()

@@ -21,8 +21,8 @@ class ProjectFactory extends Factory
     {
         return [
             'promoter_id' => \App\Models\Promoter::factory(),
-            'wallet_balance' => $this->faker->numberBetween(0, 4000),
-            'investment_goal' => $this->faker->numberBetween(10000, 400000),
+            'wallet_balance' => $this->faker->randomFloat(5, 0, 40),
+            'investment_goal' => $this->faker->randomFloat(5, 100, 4000),
             'name' => $this->faker->word(),
             'description' => $this->faker->sentence(),
         ];

@@ -17,6 +17,11 @@ class Project extends Model
         'description',
     ];
 
+    protected $casts = [
+        'wallet_balance' => 'decimal:5',
+        'investment_goal' => 'decimal:5',
+    ];
+
     public function promoter()
     {
         return $this->belongsTo(Promoter::class);

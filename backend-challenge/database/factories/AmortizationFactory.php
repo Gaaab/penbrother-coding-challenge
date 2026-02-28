@@ -28,7 +28,7 @@ class AmortizationFactory extends Factory
         $state = $this->faker->randomElement([AmortizationState::PENDING->value, AmortizationState::PAID->value]);
 
         return [
-            'amount' => $this->faker->numberBetween(10000, 500000),
+            'amount' => $this->faker->randomFloat(5, 100, 5000),
             'state' => $state,
             'schedule_date' => $this->faker->dateTimeBetween('-2 years', '+1 year')->format('Y-m-d'),
         ];

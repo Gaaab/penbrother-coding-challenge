@@ -17,7 +17,7 @@ class Payment extends Model
     ];
 
     protected $casts = [
-        'amount' => 'integer',
+        'amount' => 'decimal:5',
     ];
 
     public function user()
