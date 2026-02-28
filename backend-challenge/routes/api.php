@@ -18,7 +18,7 @@ Route::post('/projects', [ProjectsController::class, 'store']);
 Route::get('/amortizations', [AmortizationsController::class, 'index']);
 Route::get('/amortizations/stats', [AmortizationsController::class, 'stats']);
 Route::get('/amortizations/{amortization}/payments', [AmortizationsController::class, 'payments']);
-Route::post('/amortizations/{amortization}', [AmortizationsController::class, 'show']);
+Route::get('/amortizations/{amortization}', [AmortizationsController::class, 'show']);
 
 // Payments
 Route::get('/payments', [PaymentsController::class, 'index']);

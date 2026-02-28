@@ -20,7 +20,7 @@ export function getAmortizations(params: AmortizationFilters = {}) {
 }
 
 export function getAmortization(id: number) {
-  return apiClient.post<{ data: Amortization }>(`/amortizations/${id}`)
+  return apiClient.get<{ data: Amortization }>(`/amortizations/${id}`)
 }
 
 export function getAmortizationPayments(id: number, page = 1) {

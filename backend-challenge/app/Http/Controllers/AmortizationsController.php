@@ -20,7 +20,7 @@ class AmortizationsController extends Controller
         return $this->amortizationService->getAmortizations($request);
     }
 
-    public function show($amortization)
+    public function show(\App\Models\Amortization $amortization)
     {
         $amortization->load('project:id,name,wallet_balance');
 
