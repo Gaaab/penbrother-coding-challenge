@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AmortizationsController;
+use App\Http\Controllers\PaymentProcessController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\ProjectsController;
 use Illuminate\Http\Request;
@@ -15,7 +16,12 @@ Route::post('/projects', [ProjectsController::class, 'store']);
 
 // Amortizations
 Route::get('/amortizations', [AmortizationsController::class, 'index']);
+Route::get('/amortizations/stats', [AmortizationsController::class, 'stats']);
+Route::get('/amortizations/{amortization}/payments', [AmortizationsController::class, 'payments']);
 Route::post('/amortizations/{amortization}', [AmortizationsController::class, 'show']);
 
 // Payments
 Route::get('/payments', [PaymentsController::class, 'index']);
+
+// Payment processing
+Route::post('/payments/process', PaymentProcessController::class);
