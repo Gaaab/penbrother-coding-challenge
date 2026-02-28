@@ -16,7 +16,7 @@ onMounted(() => {
   store.dispatch('amortizations/fetchAmortizations')
 })
 
-function onFilter(filters: { state?: string; amount?: string }) {
+function onFilter(filters: { state?: string; amount_min?: string; amount_max?: string }) {
   store.dispatch('amortizations/setFilters', { ...filters, page: 1 })
 }
 

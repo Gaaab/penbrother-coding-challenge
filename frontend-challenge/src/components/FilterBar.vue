@@ -2,19 +2,21 @@
 import { ref } from 'vue'
 
 const emit = defineEmits<{
-  (e: 'filter', filters: { state?: string; amount?: string }): void
+  (e: 'filter', filters: { state?: string; amount_min?: string; amount_max?: string }): void
 }>()
 
 const state = ref('')
-const amount = ref('')
+const amountMin = ref('')
+const amountMax = ref('')
 
 function applyFilters() {
-  emit('filter', { state: state.value, amount: amount.value })
+  emit('filter', { state: state.value, amount_min: amountMin.value, amount_max: amountMax.value })
 }
 
 function clearFilters() {
   state.value = ''
-  amount.value = ''
+  amountMin.value = ''
+  amountMax.value = ''
   emit('filter', {})
 }
 </script>
@@ -32,12 +34,24 @@ function clearFilters() {
       </select>
     </div>
     <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Amount (cents)</label>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Min Amount</label>
       <input
-        v-model="amount"
+        v-model="amountMin"
         type="number"
-        placeholder="Filter by amount"
-        class="border rounded px-3 py-2 text-sm"
+        step="0.01"
+        placeholder="Min"
+        class="border rounded px-3 py-2 text-sm w-28"
+        @keyup.enter="applyFilters"
+      />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Max Amount</label>
+      <input
+        v-model="amountMax"
+        type="number"
+        step="0.01"
+        placeholder="Max"
+        class="border rounded px-3 py-2 text-sm w-28"
         @keyup.enter="applyFilters"
       />
     </div>

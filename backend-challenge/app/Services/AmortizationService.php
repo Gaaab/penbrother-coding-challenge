@@ -18,8 +18,12 @@ class AmortizationService
             $query->where('state', $request->input('state'));
         }
 
-        if ($request->has('amount')) {
-            $query->where('amount', $request->input('amount'));
+        if ($request->has('amount_min')) {
+            $query->where('amount', '>=', $request->input('amount_min'));
+        }
+
+        if ($request->has('amount_max')) {
+            $query->where('amount', '<=', $request->input('amount_max'));
         }
 
         $amortizations = $query->paginate(15);

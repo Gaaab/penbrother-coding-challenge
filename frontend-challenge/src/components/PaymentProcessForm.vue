@@ -18,8 +18,8 @@ interface ProcessResult {
 
 const result = ref<ProcessResult | null>(null)
 
-function formatCents(cents: number): string {
-  return `$${(cents / 100).toFixed(2)}`
+function formatAmount(value: number): string {
+  return `$${Number(value).toFixed(2)}`
 }
 
 async function submit() {
@@ -72,7 +72,7 @@ async function submit() {
         </div>
         <div>
           <span class="text-xs text-gray-500">Total Amount</span>
-          <p class="text-lg font-semibold text-gray-800">{{ formatCents(result.total_amount) }}</p>
+          <p class="text-lg font-semibold text-gray-800">{{ formatAmount(result.total_amount) }}</p>
         </div>
         <div>
           <span class="text-xs text-gray-500">Delayed</span>

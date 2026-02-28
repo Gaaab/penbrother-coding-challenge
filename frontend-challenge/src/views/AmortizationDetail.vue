@@ -17,8 +17,8 @@ const loading = computed(
 
 const amortizationId = computed(() => Number(route.params.id))
 
-function formatCents(cents: number): string {
-  return `$${(cents / 100).toFixed(2)}`
+function formatAmount(value: number): string {
+  return `$${Number(value).toFixed(2)}`
 }
 
 function formatDate(dateStr: string): string {
@@ -61,7 +61,7 @@ watch(amortizationId, loadData)
         <div class="bg-white rounded-lg shadow-sm p-5">
           <span class="text-sm text-gray-500">Amount</span>
           <p class="text-2xl font-semibold text-gray-800 mt-1">
-            {{ formatCents(amortization.amount) }}
+            {{ formatAmount(amortization.amount) }}
           </p>
         </div>
         <div class="bg-white rounded-lg shadow-sm p-5">
@@ -89,7 +89,7 @@ watch(amortizationId, loadData)
           <div>
             <dt class="text-gray-500">Project Wallet</dt>
             <dd class="font-medium text-gray-800 mt-0.5">
-              {{ formatCents(amortization.project_wallet_balance) }}
+              {{ formatAmount(amortization.project_wallet_balance) }}
             </dd>
           </div>
           <div>
@@ -125,7 +125,7 @@ watch(amortizationId, loadData)
             <tr v-for="payment in payments" :key="payment.id" class="hover:bg-gray-50">
               <td class="px-4 py-3 text-gray-500">{{ payment.id }}</td>
               <td class="px-4 py-3">{{ payment.user_name }}</td>
-              <td class="px-4 py-3">{{ formatCents(payment.amount) }}</td>
+              <td class="px-4 py-3">{{ formatAmount(payment.amount) }}</td>
               <td class="px-4 py-3"><StateBadge :state="payment.state" /></td>
               <td class="px-4 py-3 text-gray-500">
                 {{ new Date(payment.created_at).toLocaleDateString() }}

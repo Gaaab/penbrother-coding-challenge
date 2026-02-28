@@ -52,6 +52,7 @@ export interface AmortizationStats {
 
 export interface AmortizationFilters {
   state?: string
-  amount?: number
+  amount_min?: string
+  amount_max?: string
   page?: number
 }

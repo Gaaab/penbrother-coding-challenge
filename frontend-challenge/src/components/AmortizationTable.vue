@@ -5,8 +5,8 @@ import type { Amortization } from '@/types'
 
 defineProps<{ items: Amortization[] }>()
 
-function formatCents(cents: number): string {
-  return `$${(cents / 100).toFixed(2)}`
+function formatAmount(value: number): string {
+  return `$${Number(value).toFixed(2)}`
 }
 </script>
 
@@ -27,7 +27,7 @@ function formatCents(cents: number): string {
         <tr v-for="item in items" :key="item.id" class="hover:bg-gray-50">
           <td class="px-4 py-3">{{ item.id }}</td>
           <td class="px-4 py-3">{{ item.project_name }}</td>
-          <td class="px-4 py-3">{{ formatCents(item.amount) }}</td>
+          <td class="px-4 py-3">{{ formatAmount(item.amount) }}</td>
           <td class="px-4 py-3"><StateBadge :state="item.state" /></td>
           <td class="px-4 py-3">{{ item.schedule_date }}</td>
           <td class="px-4 py-3">
